@@ -1,0 +1,29 @@
+{
+  "name": "build-js",
+  "version": "1.0.0",
+  "description": "Personal flavor of js build script",
+  "bin": {
+    "build-js": "index.js"
+  },
+  "scripts": {
+    "test": "standard && JS_SRC=test/fixture/index.js JS_DEST=test/build.js node index.js && node test"
+  },
+  "dependencies": {
+    "browserify": "^11.0.1",
+    "browserify-versionify": "^1.0.6",
+    "envify": "^3.4.0",
+    "txtify2": "^2.0.0",
+    "watchify": "^3.3.1"
+  },
+  "devDependencies": {
+    "standard": "^5.1.1"
+  },
+  "standard": {
+    "ignore": [
+      "test"
+    ]
+  },
+  "repository": "https://github.com/jessetane/build-js",
+  "author": "jesse.tane@gmail.com",
+  "license": "WTFPL"
+}
