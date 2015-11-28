@@ -5,7 +5,7 @@ Personal flavor of js build script
 Not crazy about the build frameworks
 
 ## How
-[watchify](https://github.com/substack/watchify) + [envify](https://github.com/hughsk/envify) + [browserify-versionify](https://github.com/webpro/versionify) + [txtify2](https://github.com/jessetane/txtify2)
+[watchify](https://github.com/substack/watchify) + [envify](https://github.com/hughsk/envify) + [browserify-versionify](https://github.com/webpro/versionify) + [txtify2](https://github.com/jessetane/txtify2) + [brfs](https://github.com/substack/brfs)
 
 ## Example
 As a standalone executable:
