@@ -9,6 +9,7 @@
     "test": "standard && JS_SRC=test/fixture/index.js JS_DEST=test/build.js node index.js && node test"
   },
   "dependencies": {
+    "brfs": "^1.4.1",
     "browserify": "^12.0.1",
     "browserify-versionify": "^1.0.6",
     "envify": "^3.4.0",
