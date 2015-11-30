@@ -17,10 +17,10 @@ function Builder (opts) {
   this.extensions = opts.extensions || EXTENSIONS
 
   this.b = browserify(this.src)
-  this.b.transform(require('brfs'))
   this.b.transform(require('txtify2'), { extensions: this.extensions })
   this.b.transform(require('envify'))
   this.b.transform(require('browserify-versionify'))
+  this.b.transform(require('brfs'))
 }
 
 Builder.prototype.build = function (cb) {
