@@ -20,7 +20,7 @@ $ build-js --watch
 
 Use env vars to change the default entry point / destination / extensions:
 ```bash
-$ JS_SRC=index.js JS_DEST=share/build.js JS_EXTENSIONS='html,txt' build-js
+$ JS_SRC=index.js JS_DEST=public/build.js JS_EXTENSIONS='html,txt' build-js
 ```
 
 As a JavaScript library:
@@ -30,7 +30,7 @@ var Builder = require('build-js')
 // env vars are respected, but you can override them:
 var b = new Builder({
   src: 'index.js',
-  dest: 'share/build.js',
+  dest: 'public/build.js',
   extensions: [ 'html', 'txt' ]
 })
 

@@ -7,7 +7,7 @@ var watchify = require('watchify')
 var fs = require('fs')
 
 var SRC = process.env.JS_SRC || 'index.js'
-var DEST = process.env.JS_DEST || 'share/build.js'
+var DEST = process.env.JS_DEST || 'public/build.js'
 var EXTENSIONS = (process.env.JS_EXTENSIONS || 'html').split(',')
 
 function Builder (opts) {
