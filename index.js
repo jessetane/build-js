@@ -17,6 +17,13 @@ function Builder (opts) {
   this.extensions = opts.extensions || EXTENSIONS
 
   this.b = browserify(this.src)
+  this.b.transform(require('babelify'), {
+    presets: [
+      require('babel-preset-es2015'),
+      require('babel-preset-stage-2')
+    ],
+    plugins: [ require('babel-plugin-transform-strict-mode') ]
+  })
   this.b.transform(require('txtify2'), { extensions: this.extensions })
   this.b.transform(require('envify'))
   this.b.transform(require('browserify-versionify'))
