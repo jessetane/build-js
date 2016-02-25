@@ -51,4 +51,4 @@ $ npm run test
 ```
 
 ## License
-WTFPL
+Public domain
