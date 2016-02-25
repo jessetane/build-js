@@ -2,9 +2,10 @@
 
 module.exports = Builder
 
+var fs = require('fs')
 var browserify = require('browserify')
 var watchify = require('watchify')
-var fs = require('fs')
+var babelHelpersInjector = require('./babel-helpers-injector')
 
 var SRC = process.env.JS_SRC || 'index.js'
 var DEST = process.env.JS_DEST || 'public/build.js'
@@ -18,12 +19,17 @@ function Builder (opts) {
 
   this.b = browserify(this.src)
   this.b.transform(require('babelify'), {
+    ignore: /build-js\/babel-helpers\.js$/,
     presets: [
       require('babel-preset-es2015'),
       require('babel-preset-stage-2')
     ],
-    plugins: [ require('babel-plugin-transform-strict-mode') ]
+    plugins: [
+      require('babel-plugin-transform-strict-mode'),
+      require('babel-plugin-external-helpers')
+    ]
   })
+  this.b.transform(babelHelpersInjector)
   this.b.transform(require('txtify2'), { extensions: this.extensions })
   this.b.transform(require('envify'))
   this.b.transform(require('browserify-versionify'))

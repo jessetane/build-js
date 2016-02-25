@@ -9,6 +9,7 @@
     "test": "standard && JS_SRC=test/fixture/index.js JS_DEST=test/build.js node index.js && node test"
   },
   "dependencies": {
+    "babel-plugin-external-helpers": "^6.5.0",
     "babel-plugin-transform-strict-mode": "^6.5.2",
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-stage-2": "^6.5.0",
@@ -17,6 +18,7 @@
     "browserify": "^12.0.1",
     "browserify-versionify": "^1.0.6",
     "envify": "^3.4.0",
+    "through2": "^2.0.1",
     "txtify2": "^2.0.0",
     "watchify": "^3.3.1"
   },
@@ -25,7 +27,8 @@
   },
   "standard": {
     "ignore": [
-      "test"
+      "test",
+      "babel-helpers.js"
     ]
   },
   "repository": "https://github.com/jessetane/build-js",
