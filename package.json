@@ -29,7 +29,7 @@
   "standard": {
     "ignore": [
       "test",
-      "babel-helpers.js"
+      "_"
     ]
   },
   "repository": "https://github.com/jessetane/build-js",
