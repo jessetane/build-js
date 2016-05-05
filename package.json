@@ -6,6 +6,7 @@
     "build-js": "index.js"
   },
   "scripts": {
+    "install": "node ./babel-build-helpers",
     "test": "standard && JS_SRC=test/fixture/index.js JS_DEST=test/build.js node index.js && node test"
   },
   "dependencies": {
