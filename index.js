@@ -10,6 +10,15 @@ var SRC = process.env.JS_SRC || 'index.js'
 var DEST = process.env.JS_DEST || 'public/build.js'
 var EXTENSIONS = (process.env.JS_EXTENSIONS || 'html').split(',')
 
+try {
+  var pkg = require(process.cwd() + '/package.json')
+  var pkgTransforms = pkg.browserify.transform
+  var babelifyOpts = pkgTransforms
+    .filter(t => t[0] === 'babelify')[0][1]
+} catch (err) {
+  babelifyOpts = {}
+}
+
 function Builder (opts) {
   opts = opts || {}
   this.src = opts.src || SRC
@@ -21,11 +30,15 @@ function Builder (opts) {
     presets: [
       'babel-preset-es2015',
       'babel-preset-stage-2'
-    ],
+    ].concat(
+      babelifyOpts.presets || []
+    ),
     plugins: [
       'babel-plugin-transform-strict-mode',
       require('./babel-transform-runtime')
-    ]
+    ].concat(
+      babelifyOpts.plugins || []
+    )
   })
   this.b.transform('txtify2', { extensions: this.extensions })
   this.b.transform('brfs')
