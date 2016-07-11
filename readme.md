@@ -51,4 +51,4 @@ $ npm run test
 ```
 
 ## License
-Public domain
+MIT
