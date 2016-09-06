@@ -35,6 +35,7 @@ function Builder (opts) {
     ),
     plugins: [
       'babel-plugin-transform-strict-mode',
+      'babel-plugin-transform-object-assign',
       require('./babel-transform-runtime')
     ].concat(
       babelifyOpts.plugins || []
