@@ -6,14 +6,15 @@ var helpers = buildExternalHelpers(null, 'var')
   .split('\n')
   .slice(1, -1)
   .join('\n')
-  .split(/\nbabelHelpers\./g)
+  .split(/babelHelpers\./g)
 
 var directory = path.join(__dirname, '_')
 if (!fs.existsSync(directory)) {
   fs.mkdirSync(directory)
 }
 
-helpers = helpers.map(function (helper) {
+helpers.forEach(function (helper) {
+  if (!helper) return
   var name = helper.match(/(^[^ ]*) = /)[1]
   var body = 'module.exports = ' + helper.split(/^[^ ]* = /)[1]
   fs.writeFileSync(path.join(directory, name + '.js'), body)
