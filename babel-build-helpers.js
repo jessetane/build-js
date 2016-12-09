@@ -15,7 +15,9 @@ if (!fs.existsSync(directory)) {
 
 helpers.forEach(function (helper) {
   if (!helper) return
-  var name = helper.match(/(^[^ ]*) = /)[1]
+  var matches = helper.match(/(^[^ ]*) = /)
+  if (!matches) return
+  var name = matches[1]
   var body = 'module.exports = ' + helper.split(/^[^ ]* = /)[1]
   fs.writeFileSync(path.join(directory, name + '.js'), body)
 })
