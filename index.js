@@ -24,8 +24,11 @@ function Builder (opts) {
   this.src = opts.src || SRC
   this.dest = opts.dest || DEST
   this.extensions = opts.extensions || EXTENSIONS
-
-  this.b = browserify(this.src)
+  this.b = browserify({
+    entries: [ this.src ],
+    cache: {},
+    packageCache: {}
+  })
   this.b.transform('babelify', {
     presets: [
       'babel-preset-es2015',
@@ -52,7 +55,7 @@ Builder.prototype.build = function (cb) {
   file.on('finish', cbwrap)
   file.on('error', cbwrap)
 
-  var b = this.w ? this.w.bundle() : this.b.bundle()
+  var b = this.b.bundle()
   b
     .on('error', cbwrap)
     .pipe(file)
@@ -66,14 +69,15 @@ Builder.prototype.build = function (cb) {
 }
 
 Builder.prototype.watch = function (cb) {
-  this.w = watchify(this.b)
-  this.w.on('update', this.build.bind(this, cb))
+  this.watcher = this.build.bind(this, cb)
+  this.b.on('update', this.watcher)
+  this.b.plugin(watchify)
   this.build(cb)
 }
 
 Builder.prototype.unwatch = function () {
-  this.w.close()
-  delete this.w
+  this.b.removeListener('udpate', this.watcher)
+  this.b.close()
 }
 
 if (!module.parent) {
