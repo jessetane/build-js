@@ -6,6 +6,11 @@ var fs = require('fs')
 var browserify = require('browserify')
 var watchify = require('watchify')
 
+// shim module deps to support non-standard browserify param "include"
+// should be an array of paths to always consider top level e.g.
+// [ 'node_modules/module-that-needs-transforming' ]
+require('./module-deps-shim')
+
 var SRC = process.env.JS_SRC || 'index.js'
 var DEST = process.env.JS_DEST || 'public/build.js'
 var EXTENSIONS = (process.env.JS_EXTENSIONS || 'html').split(',')
@@ -27,7 +32,8 @@ function Builder (opts) {
   this.b = browserify({
     entries: [ this.src ],
     cache: {},
-    packageCache: {}
+    packageCache: {},
+    include: pkg.browserify && pkg.browserify.include
   })
   this.b.transform('babelify', {
     presets: [
