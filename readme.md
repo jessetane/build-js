@@ -5,7 +5,7 @@ Personal flavor of js build script
 Not crazy about the build frameworks
 
 ## How
-[watchify](https://github.com/substack/watchify) + [babelify](https://github.com/babel/babelify) + [envify](https://github.com/hughsk/envify) + [browserify-versionify](https://github.com/webpro/versionify) + [txtify2](https://github.com/jessetane/txtify2) + [brfs](https://github.com/substack/brfs)
+[babelify](https://github.com/babel/babelify) | [envify](https://github.com/hughsk/envify) | [browserify-versionify](https://github.com/webpro/versionify) | [txtify2](https://github.com/jessetane/txtify2) | [brfs](https://github.com/substack/brfs)
 
 ## Example
 As a standalone executable:
@@ -42,7 +42,7 @@ b['build' || 'watch'](function (err) {
 
 ## Install
 ```bash
-$ npm install jessetane/build-js#1.0.0
+$ npm install jessetane/build-js
 ```
 
 ## Test
