@@ -33,7 +33,7 @@ function Builder (opts) {
     entries: [ this.src ],
     cache: {},
     packageCache: {},
-    include: pkg.browserify && pkg.browserify.include
+    include: pkg && pkg.browserify && pkg.browserify.include
   })
   this.b.transform('babelify', {
     presets: [
